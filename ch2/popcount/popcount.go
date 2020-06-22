@@ -29,7 +29,9 @@ func PopCount2(x uint64) int {
 
 func PopCount3(x uint64) int {
 	var sum int = 0
-	for {
-
+	for x != 0 {
+		x = x & (x - 1)
+		sum++
 	}
+	return sum
 }
