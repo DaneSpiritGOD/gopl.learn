@@ -35,25 +35,27 @@ func main() {
 			bx, by := corner(i, j)
 			cx, cy := corner(i, j+1)
 			dx, dy := corner(i+1, j+1)
-			fmt.Fprintf(file, "<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
-				ax, ay, bx, by, cx, cy, dx, dy)
+			writeCorner(file, ax, ay, bx, by, cx, cy, dx, dy)
 		}
 	}
 	fmt.Fprintln(file, "</svg>")
 }
 
-func writeCorner(file *os.File,ax, ay, bx, by, cx, cy, dx, dy float64){
-	if isError(ax) ||
-	isError(ay) ||
-	isError(ay) ||
-	isError(ay) ||
-	isError(ay) ||
-	isError(ay) ||
-	isError(ay) ||
+func writeCorner(file *os.File, ax, ay, bx, by, cx, cy, dx, dy float64) {
+	if isValid(ax) &&
+		isValid(ay) &&
+		isValid(ay) &&
+		isValid(ay) &&
+		isValid(ay) &&
+		isValid(ay) &&
+		isValid(ay) {
+		fmt.Fprintf(file, "<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
+			ax, ay, bx, by, cx, cy, dx, dy)
+	}
 }
 
-func isError(num float64) bool{
-	return math.IsInf(num) || math.IsNaN(num)
+func isValid(num float64) bool {
+	return !math.IsInf(num, 1) && !math.IsInf(num, -1) && !math.IsNaN(num)
 }
 
 func corner(i, j int) (float64, float64) {
@@ -73,4 +75,18 @@ func corner(i, j int) (float64, float64) {
 func f(x, y float64) float64 {
 	r := math.Hypot(x, y) // distance from (0,0)
 	return math.Sin(r) / r
+}
+
+func fEggbox(x, y float64) float64 { //鸡蛋盒
+	r := 0.2 * (math.Cos(x) + math.Cos(y))
+	return r
+}
+
+func fSaddle(x, y float64) float64 { //马鞍
+	a := 25.0
+	b := 17.0
+	a2 := a * a
+	b2 := b * b
+	r := y*y/a2 - x*x/b2
+	return r
 }
