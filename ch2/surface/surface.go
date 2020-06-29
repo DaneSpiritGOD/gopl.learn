@@ -3,8 +3,10 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"math"
+	"net/http"
 	"os"
 )
 
@@ -26,7 +28,24 @@ func main() {
 		return
 	}
 
-	fmt.Fprintf(file, "<svg xmlns='http://www.w3.org/2000/svg' "+
+	write(file)
+
+	http.HandleFunc("/figure", figureHandler)
+	http.HandleFunc("/", defaultHandler)
+	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+}
+
+func figureHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/svg+xml")
+	write(w)
+}
+
+func defaultHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "%s %s %s\n", r.Method, r.URL, r.Proto)
+}
+
+func write(out io.Writer) {
+	fmt.Fprintf(out, "<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
 		"width='%d' height='%d'>\n", width, height)
 	for i := 0; i < cells; i++ {
@@ -35,13 +54,13 @@ func main() {
 			bx, by := corner(i, j)
 			cx, cy := corner(i, j+1)
 			dx, dy := corner(i+1, j+1)
-			writeCorner(file, ax, ay, bx, by, cx, cy, dx, dy)
+			writeCorner(out, ax, ay, bx, by, cx, cy, dx, dy)
 		}
 	}
-	fmt.Fprintln(file, "</svg>")
+	fmt.Fprintln(out, "</svg>")
 }
 
-func writeCorner(file *os.File, ax, ay, bx, by, cx, cy, dx, dy float64) {
+func writeCorner(out io.Writer, ax, ay, bx, by, cx, cy, dx, dy float64) {
 	if isValid(ax) &&
 		isValid(ay) &&
 		isValid(ay) &&
@@ -49,7 +68,7 @@ func writeCorner(file *os.File, ax, ay, bx, by, cx, cy, dx, dy float64) {
 		isValid(ay) &&
 		isValid(ay) &&
 		isValid(ay) {
-		fmt.Fprintf(file, "<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
+		fmt.Fprintf(out, "<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
 			ax, ay, bx, by, cx, cy, dx, dy)
 	}
 }
