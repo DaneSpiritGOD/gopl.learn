@@ -5,35 +5,59 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"io"
 	"log"
 	"math"
 	"math/cmplx"
 	"os"
 )
 
-func main() {
-	const (
-		xmin, ymin, xmax, ymax = -2, -2, +2, +2
-		width, height          = 1024, 1024
-	)
+const (
+	xmin, ymin, xmax, ymax = -2, -2, +2, +2
+	width, height          = 1024, 1024
+	epsX                   = (xmax - xmin) / float64(width)
+	epsY                   = (ymax - ymin) / float64(height)
+)
 
+var (
+	offX = []float64{-epsX, +epsX}
+	offY = []float64{-epsY, +epsY}
+)
+
+func main() {
 	file, err := os.Create("wow.png")
 	if err != nil {
 		log.Fatalln(err)
 		return
 	}
 
+	draw(file)
+}
+
+func draw(out io.Writer) {
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	for py := 0; py < height; py++ {
-		y := float64(py)/height*(ymax-ymin) + ymin
+		y := float64(py)*epsY + ymin
 		for px := 0; px < width; px++ {
-			x := float64(px)/width*(xmax-xmin) + xmin
-			z := complex(x, y)
+			x := float64(px)*epsX + xmin
+
+			superPixels := make([]color.Color, 0)
+			for i := 0; i < 2; i++ {
+				for j := 0; i < 2; j++ {
+					z := complex(x+offX[i], y+offY[j])
+					superPixels = append(superPixels, mandelbrot(z))
+				}
+			}
+
 			// Image point (px, py) represents complex value z.
 			img.Set(px, py, mandelbrot(z))
 		}
 	}
-	png.Encode(file, img) // NOTE: ignoring errors
+	png.Encode(out, img) // NOTE: ignoring errors
+}
+
+func avg(colors []color.Color) color.Color {
+
 }
 
 func mandelbrot(z complex128) color.Color {
