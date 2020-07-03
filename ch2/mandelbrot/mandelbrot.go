@@ -43,21 +43,36 @@ func draw(out io.Writer) {
 
 			superPixels := make([]color.Color, 0)
 			for i := 0; i < 2; i++ {
-				for j := 0; i < 2; j++ {
+				for j := 0; j < 2; j++ {
 					z := complex(x+offX[i], y+offY[j])
 					superPixels = append(superPixels, mandelbrot(z))
 				}
 			}
 
 			// Image point (px, py) represents complex value z.
-			img.Set(px, py, mandelbrot(z))
+			img.Set(px, py, avg(superPixels))
 		}
 	}
 	png.Encode(out, img) // NOTE: ignoring errors
 }
 
 func avg(colors []color.Color) color.Color {
+	result := color.RGBA64{}
+	for _, color := range colors {
+		r, g, b, a := color.RGBA()
+		result.R += uint16(r)
+		result.G += uint16(g)
+		result.B += uint16(b)
+		result.A += uint16(a)
+	}
 
+	count := uint16(len(colors))
+	result.R /= count
+	result.G /= count
+	result.B /= count
+	result.A /= count
+
+	return result
 }
 
 func mandelbrot(z complex128) color.Color {
