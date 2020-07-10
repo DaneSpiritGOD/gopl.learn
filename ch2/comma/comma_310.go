@@ -20,7 +20,7 @@ func comma(s string) string {
 	b := []byte(s)
 
 	var start int
-	if b[0] == '+' || b[1] == '-' {
+	if b[0] == '+' || b[0] == '-' {
 		start = 1
 	} else {
 		start = 0
