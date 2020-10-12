@@ -1,4 +1,6 @@
 // Findlinks1 prints the links in an HTML document read from standard input.
+
+//.\ch1\fetch\fetch1.exe https://code.visualstudio.com/docs/editor/debugging | .\ch5\ex5_1.exe
 package main
 
 import (
@@ -29,13 +31,16 @@ func visit(links []string, n *html.Node) []string {
 		}
 	}
 
-	return visitChilds(links, n.FirstChild)
-}
-
-func visitChilds(links []string, n *html.Node) []string {
-	if n == nil {
-		return links
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		links = visit(links, c)
 	}
 
-	return visitChilds(links, n.NextSibling)
+	// if n.FirstChild != nil {
+	// 	links = visit(links, n.FirstChild)
+	// }
+	// if n.NextSibling != nil {
+	// 	links = visit(links, n.NextSibling)
+	// }
+
+	return links
 }
