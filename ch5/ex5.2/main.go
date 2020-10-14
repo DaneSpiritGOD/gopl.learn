@@ -1,11 +1,12 @@
 // Findlinks1 prints the links in an HTML document read from standard input.
 
-//.\ch1\fetch\fetch1.exe https://code.visualstudio.com/docs/editor/debugging | .\ch5\ex5.2\main.exe
+//..\..\ch1\fetch\fetch1.exe https://code.visualstudio.com/docs/editor/debugging | .\main.exe
 package main
 
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"golang.org/x/net/html"
 )
@@ -19,8 +20,23 @@ func main() {
 
 	m := make(map[string]int)
 	visit(m, doc)
-	for a, count := range m {
-		fmt.Printf("%v %v\n", a, count)
+
+	type kv struct {
+		key   string
+		value int
+	}
+
+	var pairs []kv
+	for k, v := range m {
+		pairs = append(pairs, kv{k, v})
+	}
+
+	sort.SliceStable(pairs, func(i, j int) bool {
+		return pairs[i].value > pairs[j].value
+	})
+
+	for _, pair := range pairs {
+		fmt.Printf("%v %v\n", pair.key, pair.value)
 	}
 }
 
