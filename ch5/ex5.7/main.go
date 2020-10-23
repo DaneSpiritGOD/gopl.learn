@@ -32,12 +32,20 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 var depth int
 
 func hasElementNodeChild(n *html.Node) bool {
-	return n.FirstChild != nil || n.FirstChild.Type != html.ElementNode
+	return n.FirstChild != nil && n.FirstChild.Type != html.ElementNode
+}
+
+func hasNoChildElementNode(n *html.Node) bool {
+	return n.FirstChild == nil
+}
+
+func elementNodeNoPair(n *html.Node) bool {
+	return hasElementNodeChild(n) || hasNoChildElementNode(n)
 }
 
 func startElement(n *html.Node) {
 	if n.Type == html.ElementNode {
-		if hasElementNodeChild(n) {
+		if elementNodeNoPair(n) {
 			fmt.Printf("%*s<%s/>\n", depth*2, "", n.Data)
 			return
 		}
@@ -50,7 +58,7 @@ func startElement(n *html.Node) {
 
 func endElement(n *html.Node) {
 	if n.Type == html.ElementNode {
-		if hasElementNodeChild(n) {
+		if elementNodeNoPair(n) {
 			return
 		}
 
