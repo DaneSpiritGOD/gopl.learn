@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // prereqs记录了每个课程的前置课程
 var prereqs = map[string][]string{
@@ -27,6 +29,7 @@ func main() {
 	}
 }
 
+// MAP _
 type MAP map[string][]string
 
 func topSort(m MAP) []string {
@@ -40,6 +43,13 @@ func topSort(m MAP) []string {
 				seen[item] = true
 				visit2(m[item])
 				order = append(order, item)
+			} else {
+				// seen[item]==true, but not in order
+				for o := range order {
+					if order[o] == item {
+						panic(fmt.Sprintf("circle detected: %s", item))
+					}
+				}
 			}
 		}
 	}
