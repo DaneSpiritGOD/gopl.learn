@@ -8,6 +8,7 @@ import (
 	"path"
 )
 
+// Debug for string error
 type errString struct {
 	s string
 }
@@ -18,39 +19,40 @@ func (s *errString) Error() string {
 
 // Fetch downloads the URL and returns the
 // name and length of the local file.
-func fetch(url string) (filename string, n int64, err *error) {
-	resp, err1 := http.Get(url)
-	if err1 != nil {
-		return "", 0, &err1
+func fetch(url string) (filename string, n int64, err error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return "", 0, err
 	}
 	defer resp.Body.Close()
-	local := path.Base(resp.Request.URL.Path)
-	if local == "/" {
-		local = "index.html"
+	filename = path.Base(resp.Request.URL.Path)
+	if filename == "/" {
+		filename = "index.html"
 	}
-	f, err1 := os.Create(local)
-	if err1 != nil {
-		return "", 0, &err1
+	f, err := os.Create(filename)
+	if err != nil {
+		return "", 0, err
 	}
-	n, err1 = io.Copy(f, resp.Body)
+	n, err = io.Copy(f, resp.Body)
 
 	defer func() {
 		// Close file, but prefer error from Copy, if any.
-		if closeErr := f.Close(); err == nil {
-			err = &closeErr
+		if closeErr := f.Close(); err != nil {
+			err = closeErr
 		} else {
-			err = &errString{"hello"}
+			err = &errString{"This is fake err."}
 		}
 	}()
 
-	return local, n, &err1
+	return
 }
 
 func main() {
 	url := "https://books.studygolang.com/gopl-zh/ch5/ch5-08.html"
 	local, n, err := fetch(url)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "featch: %s %v\n", url, err)
+		fmt.Fprintf(os.Stderr, "fetch: %s, error occurs: %v\n", url, err)
+		return
 	}
 
 	fmt.Printf("fetch %s -> %s, bytes: %d\n", url, local, n)
