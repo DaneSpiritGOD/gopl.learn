@@ -25,11 +25,11 @@ func fetch(url string) (filename string, n int64, err error) {
 		return "", 0, err
 	}
 	defer resp.Body.Close()
-	filename = path.Base(resp.Request.URL.Path)
-	if filename == "/" {
-		filename = "index.html"
+	file := path.Base(resp.Request.URL.Path)
+	if file == "/" {
+		file = "index.html"
 	}
-	f, err := os.Create(filename)
+	f, err := os.Create(file)
 	if err != nil {
 		return "", 0, err
 	}
@@ -40,18 +40,22 @@ func fetch(url string) (filename string, n int64, err error) {
 		if closeErr := f.Close(); err != nil {
 			err = closeErr
 		} else {
-			err = &errString{"This is fake err."}
+			// set flat to true to test
+			debugFlag := false
+			if debugFlag {
+				err = &errString{"This is fake err to test whether this defer function works."}
+			}
 		}
 	}()
 
-	return
+	return file, n, err
 }
 
 func main() {
 	url := "https://books.studygolang.com/gopl-zh/ch5/ch5-08.html"
 	local, n, err := fetch(url)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "fetch: %s, error occurs: %v\n", url, err)
+		fmt.Fprintf(os.Stderr, "fetch: %s, error: %v\n", url, err)
 		return
 	}
 
