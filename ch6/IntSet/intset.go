@@ -58,7 +58,59 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-func (*IntSet) Len() int      // return the number of elements
-func (*IntSet) Remove(x int)  // remove x from the set
-func (*IntSet) Clear()        // remove all elements from the set
-func (*IntSet) Copy() *IntSet // return a copy of the set
+func popCount(x uint64) int {
+	var sum int = 0
+	for x != 0 {
+		x = x & (x - 1)
+		sum++
+	}
+	return sum
+}
+
+// Equals return two IntSet are euqual to each other
+func (s *IntSet) Equals(s1 *IntSet) bool {
+	if len(s.words) != len(s1.words) {
+		return false
+	}
+
+	for i, word := range s.words {
+		word1 := s1.words[i]
+		if word != word1 {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Len return the number of elements
+func (s *IntSet) Len() int {
+	count := 0
+	for _, word := range s.words {
+		count += popCount(word)
+	}
+	return count
+}
+
+// Remove remove x from the set
+func (s *IntSet) Remove(x int) {
+	word, bit := x/64, uint(x%64)
+	if word < len(s.words) && s.words[word]&(1<<bit) != 0 {
+		s.words[word] &^= 1 << bit
+	}
+}
+
+// Clear remove all elements from the set
+func (s *IntSet) Clear() {
+	s.words = nil
+}
+
+// Copy return a copy of the set
+func (s *IntSet) Copy() *IntSet {
+	ss := IntSet{}
+	for _, word := range s.words {
+		ss.words = append(ss.words, word)
+	}
+
+	return &ss
+}
