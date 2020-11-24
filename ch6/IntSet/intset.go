@@ -44,6 +44,21 @@ func (s *IntSet) UnionWith(t *IntSet) {
 	}
 }
 
+// IntersectWith s intersect with t
+func (s *IntSet) IntersectWith(t *IntSet) IntSet {
+	ss := IntSet{}
+
+	for i, tword := range t.words {
+		if i >= len(s.words) {
+			break
+		}
+
+		ss.words = append(ss.words, s.words[i]&tword)
+	}
+
+	return ss
+}
+
 // String returns the set as a string of the form "{1 2 3}".
 func (s *IntSet) String() string {
 	var buf bytes.Buffer
