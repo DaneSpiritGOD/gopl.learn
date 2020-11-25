@@ -44,7 +44,7 @@ func (s *IntSet) UnionWith(t *IntSet) {
 	}
 }
 
-// IntersectWith s intersect with t
+// IntersectWith 交集：元素在A集合B集合均出现
 func (s *IntSet) IntersectWith(t *IntSet) IntSet {
 	ss := IntSet{}
 
@@ -54,6 +54,45 @@ func (s *IntSet) IntersectWith(t *IntSet) IntSet {
 		}
 
 		ss.words = append(ss.words, s.words[i]&tword)
+	}
+
+	return ss
+}
+
+// DifferenceWith 差集：元素出现在A集合，未出现在B集合
+func (s *IntSet) DifferenceWith(t *IntSet) IntSet {
+	ss := IntSet{}
+
+	for i, tword := range s.words {
+		if i >= len(t.words) {
+			ss.words = append(ss.words, tword)
+		} else {
+			ss.words = append(ss.words, tword&^t.words[i])
+		}
+	}
+
+	return ss
+}
+
+// SymmetricDifference 并差集：元素出现在A但没有出现在B，或者出现在B没有出现在A
+func (s *IntSet) SymmetricDifference(t *IntSet) IntSet {
+	ss := IntSet{}
+
+	i := 0
+	for ; i < len(s.words); i++ {
+		sword := s.words[i]
+
+		if i >= len(t.words) {
+			ss.words = append(ss.words, sword)
+		} else {
+			tword := t.words[i]
+			ss.words = append(ss.words, sword^tword)
+		}
+	}
+
+	for ; i < len(t.words); i++ {
+		tword := t.words[i]
+		ss.words = append(ss.words, tword)
 	}
 
 	return ss
