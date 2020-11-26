@@ -175,3 +175,19 @@ func (s *IntSet) Copy() *IntSet {
 
 	return &ss
 }
+
+// Elems return all elements of IntSet
+func (s *IntSet) Elems() []int {
+	var buf []int
+	for i, word := range s.words {
+		if word == 0 {
+			continue
+		}
+		for j := 0; j < 64; j++ {
+			if word&(1<<uint(j)) != 0 {
+				buf = append(buf, 64*i+j)
+			}
+		}
+	}
+	return buf
+}
