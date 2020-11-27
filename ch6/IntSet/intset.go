@@ -5,21 +5,23 @@ import (
 	"fmt"
 )
 
+const bitLen = 32 << (^uint(0) >> 63)
+
 // An IntSet is a set of small non-negative integers.
 // Its zero value represents the empty set.
 type IntSet struct {
-	words []uint64
+	words []uint
 }
 
 // Has reports whether the set contains the non-negative value x.
 func (s *IntSet) Has(x int) bool {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/bitLen, uint(x%bitLen)
 	return word < len(s.words) && s.words[word]&(1<<bit) != 0
 }
 
 // Add adds the non-negative value x to the set.
 func (s *IntSet) Add(x int) {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/bitLen, uint(x%bitLen)
 	for word >= len(s.words) {
 		s.words = append(s.words, 0)
 	}
@@ -106,12 +108,12 @@ func (s *IntSet) String() string {
 		if word == 0 {
 			continue
 		}
-		for j := 0; j < 64; j++ {
+		for j := 0; j < bitLen; j++ {
 			if word&(1<<uint(j)) != 0 {
 				if buf.Len() > len("{") {
 					buf.WriteByte(' ')
 				}
-				fmt.Fprintf(&buf, "%d", 64*i+j)
+				fmt.Fprintf(&buf, "%d", bitLen*i+j)
 			}
 		}
 	}
@@ -119,7 +121,7 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-func popCount(x uint64) int {
+func popCount(x uint) int {
 	var sum int = 0
 	for x != 0 {
 		x = x & (x - 1)
@@ -155,7 +157,7 @@ func (s *IntSet) Len() int {
 
 // Remove remove x from the set
 func (s *IntSet) Remove(x int) {
-	word, bit := x/64, uint(x%64)
+	word, bit := x/bitLen, uint(x%bitLen)
 	if word < len(s.words) && s.words[word]&(1<<bit) != 0 {
 		s.words[word] &^= 1 << bit
 	}
@@ -183,9 +185,9 @@ func (s *IntSet) Elems() []int {
 		if word == 0 {
 			continue
 		}
-		for j := 0; j < 64; j++ {
+		for j := 0; j < bitLen; j++ {
 			if word&(1<<uint(j)) != 0 {
-				buf = append(buf, 64*i+j)
+				buf = append(buf, bitLen*i+j)
 			}
 		}
 	}
