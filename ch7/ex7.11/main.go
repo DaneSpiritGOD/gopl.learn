@@ -18,6 +18,7 @@ var db = database{"shoes": 50, "socks": 5}
 func main() {
 	http.HandleFunc("/list", db.list)
 	http.HandleFunc("/price", db.price)
+	http.HandleFunc("/update", db.update)
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
 
