@@ -67,4 +67,6 @@ func newDecoder(data []byte) *xml.Decoder {
 	dec.Strict = false
 	dec.AutoClose = xml.HTMLAutoClose
 	dec.Entity = xml.HTMLEntity
+
+	return dec
 }
