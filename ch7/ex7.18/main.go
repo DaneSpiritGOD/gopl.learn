@@ -8,24 +8,33 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
-type Node interface{} // CharData or *Element
+type node interface{} // CharData or *Element
 
-type CharData string
+type charData string
 
-type Element struct {
+type element struct {
 	Type     xml.Name
 	Attr     []xml.Attr
-	Children []Node
+	Children []node
 }
 
 func main() {
 	url := "https://www.cnblogs.com"
 
-	dec := newDecoder(fetchURL(url))
+	data := fetchURL(url)
+	dec := newDecoder(data)
+	root := buildRoot(dec)
 
-	var stack []string // stack of element names
+	fmt.Println(root)
+}
+
+func buildRoot(dec *xml.Decoder) node {
+	var root node
+
+	var stack []*element // stack of element names
 	for {
 		tok, err := dec.Token()
 		if err == io.EOF {
@@ -36,12 +45,51 @@ func main() {
 		}
 		switch tok := tok.(type) {
 		case xml.StartElement:
-			stack = append(stack, tok.Name.Local) // push
+			e := &element{
+				Type: tok.Name,
+				Attr: tok.Attr,
+			}
+
+			if root == nil {
+				root = e
+			} else {
+				last := stack[len(stack)-1]
+				last.Children = append(last.Children, e)
+			}
+			stack = append(stack, e) // push
 		case xml.EndElement:
 			stack = stack[:len(stack)-1] // pop
 		case xml.CharData:
-
+			if len(stack) > 0 {
+				s := strings.TrimSpace(string(tok))
+				if s != "" {
+					last := stack[len(stack)-1]
+					last.Children = append(last.Children, charData(s))
+				}
+			}
 		}
+	}
+
+	return root
+}
+
+func (n *element) String() string {
+	b := &bytes.Buffer{}
+	visit(n, b, 0)
+	return b.String()
+}
+
+func visit(n node, w io.Writer, depth int) {
+	switch n := n.(type) {
+	case *element:
+		fmt.Fprintf(w, "%*s%s %s\n", depth*2, "", n.Type.Local, n.Attr)
+		for _, c := range n.Children {
+			visit(c, w, depth+1)
+		}
+	case charData:
+		fmt.Fprintf(w, "%*s%q\n", depth*2, "", n)
+	default:
+		panic(fmt.Sprintf("got %T", n))
 	}
 }
 
