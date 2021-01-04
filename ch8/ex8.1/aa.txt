@@ -1,0 +1,6 @@
+2021/01/08 12:30:21 location: Africa/Accra
+2021/01/08 12:30:21 listening on addr: localhost:8083
+2021/01/08 12:32:46 accept one connection: 127.0.0.1:49495
+2021/01/08 12:32:48 net error: write tcp 127.0.0.1:8083->127.0.0.1:49495: wsasend: An existing connection was forcibly closed by the remote host.
+2021/01/08 12:33:44 accept one connection: 127.0.0.1:49530
+2021/01/08 12:34:12 net error: write tcp 127.0.0.1:8083->127.0.0.1:49530: wsasend: An existing connection was forcibly closed by the remote host.
