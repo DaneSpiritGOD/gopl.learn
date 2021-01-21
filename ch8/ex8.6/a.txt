@@ -1,0 +1,479 @@
+2021/01/21 20:06:29 dm after remove work: 3 1 1
+2021/01/21 20:06:29 dm before crawl: 3 1 1
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/
+2021/01/21 20:06:29 dm before crawl: 3 1 1
+2021/01/21 20:06:29 https://www.so.com/
+2021/01/21 20:06:29 dm after add work: 3 1 2
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch0/ch0-01.html
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch0/ch0-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch0/ch0-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch0/ch0-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch1/ch1-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch0/ch0-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch2/ch2-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch3/ch3-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch4/ch4-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-09.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch5/ch5-10.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch6/ch6-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-09.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-10.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-11.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-12.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-13.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-14.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch7/ch7-15.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-09.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch8/ch8-10.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch9/ch9-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch10/ch10-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch11/ch11-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-06.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-07.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-08.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch12/ch12-09.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13-01.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13-02.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13-03.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13-04.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/ch13/ch13-05.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/appendix/appendix.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/appendix/appendix-a-errata.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/appendix/appendix-b-author.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/appendix/appendix-c-cpoyright.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://books.studygolang.com/gopl-zh/appendix/appendix-d-translations.html
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 https://www.gitbook.com
+2021/01/21 20:06:29 dm before crawl: 3 1 2
+2021/01/21 20:06:29 http://gopl.io
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://github.com/chai2010/advanced-go-programming-book
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://github.com/golang-china/gopl-zh
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://github.com/golang-china/gopl-zh
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://github.com/chai2010
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://twitter.com/chaishushan
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://github.com/cch123
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 mailto:njutree@gmail.com
+2021/01/21 20:06:30 Get "mailto:njutree@gmail.com": unsupported protocol scheme "mailto"
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://docs.hacknode.org/gopl-zh/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 https://wizardforcel.gitbooks.io/gopl-zh/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://genius.cat-v.org/ken-thompson/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://genius.cat-v.org/dennis-ritchie/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://doc.cat-v.org/unix/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://www.linux.org/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://www.apple.com/cn/osx/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://genius.cat-v.org/rob-pike/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://research.google.com/pubs/author96.html
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://www.cs.princeton.edu/~bwk/
+2021/01/21 20:06:30 dm before crawl: 3 1 2
+2021/01/21 20:06:30 http://s3-us-west-2.amazonaws.com/belllabs-microsite-dritchie/cbook/index.html
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 https://en.wikipedia.org/wiki/K%26R
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 https://github.com/adonovan
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 http://www.amazon.cn/The-Go-Programming-Language-Donovan-Alan-A-A/dp/0134190440/
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 http://product.china-pub.com/4912464
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 https://github.com/CrazySssst
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 https://github.com/foreversmart
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 https://github.com/golang-china/gopl-zh/issues
+2021/01/21 20:06:31 dm before crawl: 3 1 2
+2021/01/21 20:06:31 http://www.gopl.io/errata.html
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 https://github.com/adonovan/gopl.io/
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 http://golang.org
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 http://talks.golang.org/2015/how-go-was-made.slide
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 https://www.freebsd.org/
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 http://www.openbsd.org/
+2021/01/21 20:06:32 dm before crawl: 3 1 2
+2021/01/21 20:06:32 http://plan9.bell-labs.com/plan9/
+2021/01/21 20:06:33 dm before crawl: 3 1 2
+2021/01/21 20:06:33 https://www.microsoft.com/zh-cn/windows/
+2021/01/21 20:06:33 dm after remove work: 3 1 1
+2021/01/21 20:06:33 dm after add work: 3 1 2
+2021/01/21 20:06:33 dm before crawl: 3 1 2
+2021/01/21 20:06:33 https://www.so.com/link?m=bK5EfooRzwAEcV7C4qeRmAVfgzalJ2tfYnwhdVroXeXVHhVOZunihUzjAevX2PUU%2F0bMos15%2BM6ny%2BKOAUOBTdg4sbswJhJB1
+2021/01/21 20:06:33 dm before crawl: 3 1 2
+2021/01/21 20:06:33 http://news.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 https://www.so.com/link?m=b5kkjQCltMOmPUD6BpPNfnvIUI81GlhCO29bRVCYVl8lI3SdcmHmmrIaDz6gzfzCxXw0oi%2Bt8Kp83Wanx8UshoW6TW%2BJwwpb2eM1m9hXxCunS9y%2FYPzEIINOMmI0%3D
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 http://image.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 http://ly.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 http://ditu.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 http://baike.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 http://wenku.so.com/?src=tab_web
+2021/01/21 20:06:34 dm before crawl: 3 1 2
+2021/01/21 20:06:34 https://b2b.so.com?confr=360_home_title&pdt=hyc&src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 javascript:void(0);
+2021/01/21 20:06:35 Get "javascript:void(0);": unsupported protocol scheme "javascript"
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://en.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://wenda.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://fanyi.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://music.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://soft.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://index.so.com/#src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://xueshu.so.com/?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/zt/so_products.html?src=tab_web
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://i.360.cn/login?src=pcw_so&destUrl=https%3A%2F%2Fwww.so.com%2F
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/help/help_1_3.html
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 javascript:;
+2021/01/21 20:06:35 Get "javascript:;": unsupported protocol scheme "javascript"
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://mse.360.cn
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://info.so.com/feedback.html
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://info.so.com/web_report.html?src=report
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/help/help_1_1.html
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/help/help_uagreement.html
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/help/help_privacy.html
+2021/01/21 20:06:35 dm before crawl: 3 1 2
+2021/01/21 20:06:35 http://www.so.com/help/help_iduty.html
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 http://zhanzhang.so.com
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 http://e.360.cn?src=srp
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 http://so.lianmeng.360.cn/
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://www.so.com/?src=www
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://www.so.com/link?m=bX2LSArPAJcPrikryV51VEOFojT%2B0vEkixGel%2FoQS4hjf8ru6j%2BgNyZocei6NDg%2FNSQlL543cgl9I%2FaFWp8TsNatvnzuDLULC
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://www.so.com/link?m=bZCbogjyTc0yGm%2FHYbYmrZmaxHIDNxfoBABG6Nd9iijosWcdPCNCzcNBQHvw5Mdi16fmMPPekHOdKMl5my5ZRt7nI9wlOyZ2S3I8SthLy5ZMFzr2Du%2FAPFaIan%2Bo70BaU3bU499fGxWFi7gOaw7xiO9iox25VdV5CAQ5VPTM5IIDvg%2FMd
+2021/01/21 20:06:36 dm after remove work: 3 1 1
+2021/01/21 20:06:36 dm after remove work: 3 1 0
+2021/01/21 20:06:36 dm after add work: 3 1 1
+2021/01/21 20:06:36 dm after add work: 3 1 2
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://en.wikipedia.org/wiki/Niklaus_Wirth
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://en.wikipedia.org/wiki/Pascal_(programming_language)
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://en.wikipedia.org/wiki/Modula-2
+2021/01/21 20:06:36 dm before crawl: 3 1 2
+2021/01/21 20:06:36 https://en.wikipedia.org/wiki/Oberon_(programming_language)
+2021/01/21 20:06:38 dm before crawl: 3 1 2
+2021/01/21 20:06:38 https://en.wikipedia.org/wiki/Oberon-2_(programming_language)
+2021/01/21 20:06:38 dm before crawl: 3 1 2
+2021/01/21 20:06:38 https://en.wikipedia.org/wiki/Tony_Hoare
+2021/01/21 20:06:39 dm before crawl: 3 1 2
+2021/01/21 20:06:39 https://en.wikipedia.org/wiki/Communicating_sequential_processes
+2021/01/21 20:06:39 dm before crawl: 3 1 2
+2021/01/21 20:06:39 http://doc.cat-v.org/bell_labs/squeak/
+2021/01/21 20:06:39 dm before crawl: 3 1 2
+2021/01/21 20:06:39 http://doc.cat-v.org/plan_9/2nd_edition/papers/alef/
+2021/01/21 20:06:39 dm before crawl: 3 1 2
+2021/01/21 20:06:39 http://doc.cat-v.org/inferno/4th_edition/limbo_language/
+2021/01/21 20:06:39 dm before crawl: 3 1 2
+2021/01/21 20:06:39 http://talks.golang.org/2012/concurrency.slide#9
+2021/01/21 20:06:40 dm before crawl: 3 1 2
+2021/01/21 20:06:40 https://en.wikipedia.org/wiki/APL_(programming_language)
+2021/01/21 20:06:41 dm before crawl: 3 1 2
+2021/01/21 20:06:41 https://en.wikipedia.org/wiki/Scheme_(programming_language)
+2021/01/21 20:06:41 dm after remove work: 3 1 1
+2021/01/21 20:06:41 dm after add work: 3 1 2
+2021/01/21 20:06:41 dm after remove work: 3 1 1
+2021/01/21 20:06:41 dm before crawl: 3 1 1
+2021/01/21 20:06:41 http://research.swtch.com/
+2021/01/21 20:06:41 dm after add work: 3 1 2
+2021/01/21 20:06:41 Get "https://en.wikipedia.org/wiki/K%26R": net/http: TLS handshake timeout
+2021/01/21 20:06:41 dm before crawl: 3 1 2
+2021/01/21 20:06:41 http://www.cs.unc.edu/~brooks/
+2021/01/21 20:06:41 dm after remove work: 3 1 1
+2021/01/21 20:06:41 dm after add work: 3 1 2
+2021/01/21 20:06:41 dm before crawl: 3 1 2
+2021/01/21 20:06:41 https://golang.org/doc/install
+2021/01/21 20:06:41 dm after remove work: 3 1 1
+2021/01/21 20:06:41 dm after remove work: 3 1 0
+2021/01/21 20:06:41 dm after add work: 3 1 1
+2021/01/21 20:06:41 dm after remove work: 3 1 0
+2021/01/21 20:06:41 dm after add work: 3 1 1
+2021/01/21 20:06:41 dm after add work: 3 1 2
+2021/01/21 20:06:42 dm before crawl: 3 1 2
+2021/01/21 20:06:42 http://stackoverflow.com/questions/11853396/google-go-lang-assignment-order%EF%BC%89
+2021/01/21 20:06:42 dm after remove work: 3 1 1
+2021/01/21 20:06:42 dm after remove work: 3 1 0
+2021/01/21 20:06:42 dm after increate depth: 3 2 0
+2021/01/21 20:06:42 dm after add work: 3 2 1
+2021/01/21 20:06:42 dm after remove work: 3 2 0
+2021/01/21 20:06:42 dm after add work: 3 2 1
+2021/01/21 20:06:42 dm after add work: 3 2 1
+2021/01/21 20:06:42 dm after remove work: 3 2 0
+2021/01/21 20:06:42 dm after add work: 3 2 2
+2021/01/21 20:06:42 Get "https://docs.hacknode.org/gopl-zh/": net/http: TLS handshake timeout
+2021/01/21 20:06:42 dm before crawl: 3 2 2
+2021/01/21 20:06:42 https://github.com/golang/go/issues/5763
+2021/01/21 20:06:42 dm after remove work: 3 2 1
+2021/01/21 20:06:42 dm after add work: 3 2 2
+2021/01/21 20:06:43 dm before crawl: 3 2 2
+2021/01/21 20:06:43 https://golang.org/pkg
+2021/01/21 20:06:43 Get "http://plan9.bell-labs.com/plan9/": dial tcp: lookup plan9.bell-labs.com: getaddrinfow: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server.
+2021/01/21 20:06:43 dm before crawl: 3 2 2
+2021/01/21 20:06:43 https://godoc.org
+2021/01/21 20:06:43 dm after remove work: 3 2 1
+2021/01/21 20:06:43 dm after remove work: 3 2 0
+2021/01/21 20:06:43 dm after increate depth: 3 3 1
+2021/01/21 20:06:43 dm after add work: 3 3 1
+2021/01/21 20:06:43 dm after add work: 3 3 1
+2021/01/21 20:06:43 dm after remove work: 3 3 0
+2021/01/21 20:06:43 dm after remove work: 3 3 0
+2021/01/21 20:06:43 break
