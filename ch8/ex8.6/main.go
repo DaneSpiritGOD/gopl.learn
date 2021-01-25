@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/DaneSpiritGOD/ex8.6/links"
 )
@@ -14,7 +15,7 @@ func main() {
 	// Add command-line arguments to worklist.
 	go func() { worklist <- worksList{os.Args[1:], 0} }()
 
-	const maxDepth = 3 // 最大深度
+	const maxDepth = 1 // 最大深度
 
 	// Create 20 crawler goroutines to fetch each unseen link.
 	for i := 0; i < 20; i++ {
@@ -39,14 +40,33 @@ func main() {
 	// The main goroutine de-duplicates worklist items
 	// and sends the unseen ones to the crawlers.
 	seen := make(map[string]bool)
-	for list := range worklist {
-		for _, link := range list.links {
-			if !seen[link] {
-				seen[link] = true
-				unseenWork <- works{link, list.depth}
+
+forloop:
+	for {
+		select {
+		case list, ok := <-worklist:
+			{
+				if ok {
+					for _, link := range list.links {
+						if !seen[link] {
+							seen[link] = true
+							unseenWork <- works{link, list.depth}
+						}
+					}
+				} else {
+					break forloop
+				}
 			}
+		case <-time.After(10 * time.Second):
+			log.Println("time exceed")
+
+			close(unseenWork)
+			close(worklist)
+			break forloop
 		}
 	}
+
+	log.Println("main exiting")
 }
 
 func crawl(url string) []string {
