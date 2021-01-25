@@ -8,25 +8,30 @@ import (
 )
 
 func main() {
-	worklist := make(chan []string)  // lists of URLs, may have duplicates
-	unseenLinks := make(chan string) // de-duplicated URLs
+	worklist := make(chan worksList) // lists of URLs, may have duplicates
+	unseenWork := make(chan works)   // de-duplicated URLs
 
 	// Add command-line arguments to worklist.
-	go func() { worklist <- os.Args[1:] }()
+	go func() { worklist <- worksList{os.Args[1:], 0} }()
 
-	dm := &depthManager{3, 1, int32(len(os.Args[1:]))}
+	const maxDepth = 3 // 最大深度
 
 	// Create 20 crawler goroutines to fetch each unseen link.
 	for i := 0; i < 20; i++ {
 		go func() {
-			for link := range unseenLinks {
-				log.Printf("dm before crawl: %v\n", dm)
-				foundLinks := crawl(link)
-				go func() {
-					worklist <- foundLinks
-					dm.addWorks()
-					log.Printf("dm after add work: %v\n", dm)
-				}()
+			for work := range unseenWork {
+				url := work.link
+				log.Printf("current depth: %d, url: %s", work.depth, url)
+				foundLinks := crawl(url)
+
+				go func(depth int) {
+					if depth == maxDepth {
+						log.Println("reach max depth")
+						return
+					}
+
+					worklist <- worksList{foundLinks, depth + 1}
+				}(work.depth)
 			}
 		}()
 	}
@@ -35,30 +40,17 @@ func main() {
 	// and sends the unseen ones to the crawlers.
 	seen := make(map[string]bool)
 	for list := range worklist {
-		for _, link := range list {
+		for _, link := range list.links {
 			if !seen[link] {
 				seen[link] = true
-				unseenLinks <- link
+
+				unseenWork <- works{link, list.depth}
 			}
-		}
-
-		dm.removeWorks()
-		log.Printf("dm after remove work: %v\n", dm)
-
-		if dm.canLeave() {
-			log.Println("break")
-			break
-		}
-
-		if dm.canIncreaseDepth() {
-			dm.increaseDepth()
-			log.Printf("dm after increate depth: %v\n", dm)
 		}
 	}
 }
 
 func crawl(url string) []string {
-	log.Println(url)
 	list, err := links.Extract(url)
 	if err != nil {
 		log.Print(err)
