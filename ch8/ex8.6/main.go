@@ -20,18 +20,18 @@ func main() {
 	for i := 0; i < 20; i++ {
 		go func() {
 			for work := range unseenWork {
+				depth := work.depth
 				url := work.link
-				log.Printf("current depth: %d, url: %s", work.depth, url)
+				log.Printf("current depth: %d, url: %s", depth, url)
 				foundLinks := crawl(url)
 
-				go func(depth int) {
-					if depth == maxDepth {
-						log.Println("reach max depth")
-						return
-					}
-
-					worklist <- worksList{foundLinks, depth + 1}
-				}(work.depth)
+				if depth == maxDepth {
+					log.Println("reach max depth")
+				} else {
+					go func(depth int) {
+						worklist <- worksList{foundLinks, depth + 1}
+					}(depth)
+				}
 			}
 		}()
 	}
@@ -43,7 +43,6 @@ func main() {
 		for _, link := range list.links {
 			if !seen[link] {
 				seen[link] = true
-
 				unseenWork <- works{link, list.depth}
 			}
 		}
