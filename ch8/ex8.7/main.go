@@ -75,7 +75,7 @@ forloop:
 }
 
 func crawl(url string) []string {
-	list, err := links.Extract(url)
+	list, err := links.SaveAndExtract(url)
 	if err != nil {
 		log.Print(err)
 	}
