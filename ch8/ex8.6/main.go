@@ -8,6 +8,7 @@ import (
 	"github.com/DaneSpiritGOD/ex8.6/links"
 )
 
+// go run main.go types.go https://books.studygolang.com/gopl-zh/ https://www.so.com/ *>&1 > a.txt
 func main() {
 	worklist := make(chan worksList) // lists of URLs, may have duplicates
 	unseenWork := make(chan works)   // de-duplicated URLs
