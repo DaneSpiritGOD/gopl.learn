@@ -16,3 +16,4 @@
 .vscode/launch.json
 __debug_bin
 ch8/ex8.6/a.txt
+*.log
