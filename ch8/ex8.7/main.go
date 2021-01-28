@@ -1,26 +1,42 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/DaneSpiritGOD/ex8.7/links"
 )
 
-// go build main.go types.go -o main.exe
+// go build -o main.exe main.go types.go
 // .\main.exe https://books.studygolang.com/gopl-zh/ ./html_files *>&1 > main.log
 func main() {
 	worklist := make(chan worksList) // lists of URLs, may have duplicates
 	unseenWork := make(chan works)   // de-duplicated URLs
 
 	homeURL := []string{os.Args[1]}
-	homeStorePath := os.Args[2]
 
-	// Add command-line arguments to worklist.
 	go func() { worklist <- worksList{homeURL, 0} }()
 
-	const maxDepth = 5 // 最大深度
+	homeStoreDir, err := filepath.Abs(os.Args[2])
+	if err != nil {
+		log.Fatalf("%s is not a valid directory!", homeStoreDir)
+	}
+
+	log.Printf("save directory: %s", homeStoreDir)
+	if _, err := os.Stat(homeStoreDir); os.IsNotExist(err) {
+		log.Printf("directory: %s is not exists, need to create", homeStoreDir)
+		os.Mkdir(homeStoreDir, 0)
+	}
+
+	fileIndex := 1
+	getStorePathDunc := func() string {
+		return filepath.Join(homeStoreDir, fmt.Sprintf("%d.html", fileIndex))
+	}
+
+	const maxDepth = 5000 // 最大深度
 
 	// Create 20 crawler goroutines to fetch each unseen link.
 	for i := 0; i < 20; i++ {
@@ -28,8 +44,10 @@ func main() {
 			for work := range unseenWork {
 				depth := work.depth
 				url := work.link
-				log.Printf("current depth: %d, url: %s", depth, url)
-				foundLinks := crawl(url)
+				fn := getStorePathDunc()
+
+				log.Printf("current depth: %d, url: %s, fileName: %s", depth, url, fn)
+				foundLinks := crawl(url, fn)
 
 				if depth == maxDepth {
 					log.Println("reach max depth")
@@ -74,8 +92,8 @@ forloop:
 	log.Println("main exiting")
 }
 
-func crawl(url string) []string {
-	list, err := links.SaveAndExtract(url)
+func crawl(url string, filePath string) []string {
+	list, err := links.SaveAndExtract(url, filePath)
 	if err != nil {
 		log.Print(err)
 	}
