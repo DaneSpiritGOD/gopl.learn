@@ -8,6 +8,7 @@
 package links
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -28,13 +29,16 @@ func SaveAndExtract(url string, filePath string) ([]string, error) {
 		return nil, fmt.Errorf("getting %s: %s", url, resp.Status)
 	}
 
-	bytes, err := ioutil.ReadAll(resp.Body)
+	content, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("read from body of %s: %s", url, err)
 	}
-	ioutil.WriteFile(filePath, bytes, 0)
+	ioutil.WriteFile(filePath, content, 0)
 
-	doc, err := html.Parse(resp.Body)
+	// resp.Body is consumed by `ioutil.ReadAll` and a copy is needed.
+	buf := bytes.NewBuffer(content)
+
+	doc, err := html.Parse(buf)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %s as HTML: %v", url, err)
 	}

@@ -3,22 +3,28 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/url"
 	"os"
 	"path/filepath"
+	"sync/atomic"
 	"time"
 
 	"github.com/DaneSpiritGOD/ex8.7/links"
 )
 
 // go build -o main.exe main.go types.go
-// .\main.exe https://books.studygolang.com/gopl-zh/ ./html_files *>&1 > main.log
+// .\main.exe https://books.studygolang.com/gopl-zh/ ./html_files *>&1 > main.log &
 func main() {
 	worklist := make(chan worksList) // lists of URLs, may have duplicates
 	unseenWork := make(chan works)   // de-duplicated URLs
 
-	homeURL := []string{os.Args[1]}
+	home := os.Args[1]
+	homeURL, err := url.Parse(home)
+	if err != nil {
+		log.Fatalf("%s is not a valid url", home)
+	}
 
-	go func() { worklist <- worksList{homeURL, 0} }()
+	host := homeURL.Host
 
 	homeStoreDir, err := filepath.Abs(os.Args[2])
 	if err != nil {
@@ -29,11 +35,20 @@ func main() {
 	if _, err := os.Stat(homeStoreDir); os.IsNotExist(err) {
 		log.Printf("directory: %s is not exists, need to create", homeStoreDir)
 		os.Mkdir(homeStoreDir, 0)
+	} else {
+		os.RemoveAll(homeStoreDir)
+		os.Mkdir(homeStoreDir, 0)
 	}
 
-	fileIndex := 1
+	go func() { worklist <- worksList{[]string{home}, 0} }()
+
+	fileIndex := int32(0)
+	pFileIndex := &fileIndex
+
 	getStorePathDunc := func() string {
-		return filepath.Join(homeStoreDir, fmt.Sprintf("%d.html", fileIndex))
+		atomic.AddInt32(pFileIndex, 1)
+		result := filepath.Join(homeStoreDir, fmt.Sprintf("%d.html", atomic.LoadInt32(pFileIndex)))
+		return result
 	}
 
 	const maxDepth = 5000 // 最大深度
@@ -71,6 +86,14 @@ forloop:
 			{
 				if ok {
 					for _, link := range list.links {
+
+						linkURL, _ := url.Parse(link)
+						linkHost := linkURL.Host
+						if linkHost != host {
+							log.Printf("the host %s of url %s is not equals to %s", linkHost, link, host)
+							continue
+						}
+
 						if !seen[link] {
 							seen[link] = true
 							unseenWork <- works{link, list.depth}
