@@ -2,7 +2,9 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"net"
 )
@@ -21,11 +23,38 @@ var (
 var logger = log.New
 
 func main() {
+	listener, err := net.Listen("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	go broadcaster()
+
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Print(err)
+			continue
+		}
+
+		handleConn(conn)
+	}
 }
 
 func broadcaster() {
 	clients := make(map[client]bool)
+
+	getAllClientsName := func() string {
+		buf := &bytes.Buffer{}
+
+		io.WriteString(buf, "current client:")
+		for c := range clients {
+			io.WriteString(buf, " ")
+			io.WriteString(buf, c.name)
+		}
+
+		return buf.String()
+	}
 
 	for {
 		select {
@@ -40,6 +69,11 @@ func broadcaster() {
 		case cli, ok := <-entering:
 			if ok {
 				clients[cli] = true
+
+				go func() {
+					messages <- cli.name + " enters"
+					messages <- getAllClientsName()
+				}()
 			} else {
 				return
 			}
@@ -48,9 +82,10 @@ func broadcaster() {
 				delete(clients, cli)
 				close(cli.ear)
 
-				for c := range clients {
-
-				}
+				go func() {
+					messages <- cli.name + " leaves"
+					messages <- getAllClientsName()
+				}()
 			} else {
 				return
 			}
