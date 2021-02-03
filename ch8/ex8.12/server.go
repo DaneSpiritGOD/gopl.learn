@@ -37,7 +37,7 @@ func main() {
 			continue
 		}
 
-		handleConn(conn)
+		go handleConn(conn)
 	}
 }
 
@@ -47,7 +47,7 @@ func broadcaster() {
 	getAllClientsName := func() string {
 		buf := &bytes.Buffer{}
 
-		io.WriteString(buf, "current client:")
+		io.WriteString(buf, "online clients:")
 		for c := range clients {
 			io.WriteString(buf, " ")
 			io.WriteString(buf, c.name)
