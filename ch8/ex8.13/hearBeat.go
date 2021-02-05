@@ -8,8 +8,8 @@ import (
 
 type heartBeat struct {
 	expire time.Duration
-	conn   *net.Conn
-	timer  *time.Timer
+	net.Conn
+	timer *time.Timer
 }
 
 type client struct {
@@ -17,7 +17,7 @@ type client struct {
 	ear  chan<- string
 }
 
-func newBeat(expire time.Duration, conn *net.Conn) *heartBeat {
+func newBeat(expire time.Duration, conn net.Conn) *heartBeat {
 	return &heartBeat{expire, conn, nil}
 }
 
@@ -32,7 +32,7 @@ func (hb *heartBeat) resetTimer() {
 func (hb *heartBeat) createTimer() *time.Timer {
 	return time.AfterFunc(hb.expire, func() {
 		log.Println("time out")
-		(*hb.conn).Close()
+		hb.Close()
 	})
 }
 
