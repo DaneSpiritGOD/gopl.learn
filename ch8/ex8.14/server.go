@@ -7,6 +7,8 @@ import (
 	"io"
 	"log"
 	"net"
+	"os"
+	"strconv"
 	"time"
 )
 
@@ -24,6 +26,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	seconds, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	go broadcaster()
 
 	for {
@@ -33,7 +40,7 @@ func main() {
 			continue
 		}
 
-		go handleConn(conn)
+		go handleConn(conn, seconds)
 	}
 }
 
@@ -89,27 +96,35 @@ func broadcaster() {
 	}
 }
 
-func handleConn(conn net.Conn) {
+func handleConn(conn net.Conn, seconds int) {
 	defer conn.Close()
+
+	heartBeat := newBeat(time.Duration(seconds)*time.Second, conn)
+	heartBeat.start()
+
+	var name string
+
+	input := bufio.NewScanner(conn)
+	if input.Scan() {
+		if err := input.Err(); err != nil {
+			log.Print(err)
+			return
+		}
+
+		name = input.Text()
+	}
+
 	ear := make(chan string)
 	go sendEarContent(conn, ear) // listen with ear, and send message to remote
 
-	name := conn.RemoteAddr().String()
 	cli := client{name, ear}
-
 	entering <- cli // add to entering
-
-	heartBeat := newBeat(5*time.Second, conn)
-	heartBeat.start()
 
 	getKickSay := func() {
 		messages <- fmt.Sprintf("%s didn't speak anything in some time and is kicked out", name)
 	}
 
-	input := bufio.NewScanner(conn)
 	for input.Scan() {
-		log.Println("message received")
-
 		if !heartBeat.reset() {
 			getKickSay()
 			break // reset failed
