@@ -7,17 +7,13 @@ import (
 	"io"
 	"log"
 	"net"
+	"time"
 )
-
-type client struct {
-	name string
-	ear  chan<- string
-}
 
 var (
 	entering = make(chan client)
 	leaving  = make(chan client)
-	messages = make(chan string)
+	messages = make(chan string, 20)
 )
 
 var logger = log.New
@@ -103,8 +99,18 @@ func handleConn(conn net.Conn) {
 
 	entering <- cli // add to entering
 
+	heartBeat := newBeat(5*time.Second, &conn)
+	heartBeat.start()
+
 	input := bufio.NewScanner(conn)
 	for input.Scan() {
+		log.Println("message received")
+
+		if !heartBeat.reset() {
+			messages <- fmt.Sprintf("%s didn't speak anything in some time and is kicked out", name)
+			break // reset failed
+		}
+
 		messages <- name + ": " + input.Text()
 	}
 
