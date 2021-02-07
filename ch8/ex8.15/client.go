@@ -20,7 +20,7 @@ func main() {
 
 	io.WriteString(conn, name+"\n")
 
-	done := make(chan struct{})
+	done := make(chan struct{}, 2)
 	go func() {
 		mustCopy(os.Stdout, conn)
 		log.Printf("remote is closed")
