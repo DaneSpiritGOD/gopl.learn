@@ -3,12 +3,11 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"fmt"
 	"io"
 	"log"
 	"net"
-	"os"
-	"strconv"
 	"time"
 )
 
@@ -18,15 +17,16 @@ var (
 	messages = make(chan string, 20)
 )
 
-var logger = log.New
+var timeout = flag.Int("t", 20, "timeout of per connection, unit: second")
 
+// go build -o server.exe server.go hearBeat.go
+// go build -o client.exe client.go
+// .\server.exe -t 20
 func main() {
-	listener, err := net.Listen("tcp", "localhost:8000")
-	if err != nil {
-		log.Fatal(err)
-	}
+	flag.Parse()
+	seconds := *timeout
 
-	seconds, err := strconv.Atoi(os.Args[1])
+	listener, err := net.Listen("tcp", "localhost:8000")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -62,12 +62,16 @@ func broadcaster() {
 	for {
 		select {
 		case msg, ok := <-messages:
-			if ok {
-				for cli := range clients {
-					cli.ear <- msg
-				}
-			} else {
+			if !ok {
 				return
+			}
+
+			for cli := range clients {
+				select {
+				case cli.ear <- msg:
+				case <-time.After(1 * time.Second):
+					log.Printf("skip one message which is sent to client: %s", cli.name)
+				}
 			}
 		case cli, ok := <-entering:
 			if ok {
@@ -114,7 +118,7 @@ func handleConn(conn net.Conn, seconds int) {
 		name = input.Text()
 	}
 
-	ear := make(chan string)
+	ear := make(chan string, 20) // channel which has buffer
 	go sendEarContent(conn, ear) // listen with ear, and send message to remote
 
 	cli := client{name, ear}
