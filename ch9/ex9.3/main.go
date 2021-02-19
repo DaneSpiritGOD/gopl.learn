@@ -12,7 +12,7 @@ func main() {
 	f := func(key string, done <-chan struct{}) (interface{}, error) {
 		select {
 		case <-done:
-			return nil, fmt.Errorf("done interrupt when caculating result of key: %s", key)
+			return nil, memo.ErrorDone
 		case <-time.After(3 * time.Second):
 			if key == "" {
 				return nil, fmt.Errorf("key cannot be empty")
@@ -22,27 +22,48 @@ func main() {
 		}
 	}
 
-	keys := []string{"a", "a", "a", "b", "c", "c", " ", " ", " ", " "}
+	doneKey := "#"
+	keys := []string{"a", "a", "b", "c", "c", doneKey}
 	m := memo.New(f)
 
 	for _, key := range keys {
-		done := make(chan struct{})
 
-		if key == " " {
-			go func() {
-				time.AfterFunc(1*time.Second, func() {
-					done <- struct{}{}
-				})
-			}()
+		calcFunc := func(s string, d chan struct{}) {
+			log.Printf("caculating result of key: %s", key)
+			res, err := m.Get(s, d)
+			if err != nil {
+				switch err {
+				case memo.ErrorDone:
+					log.Printf("done interrupt when calculating result of key: %s", s)
+				default:
+					log.Print(err)
+				}
+			} else {
+				log.Printf("result: %v", res)
+			}
 		}
 
-		log.Printf("caculating result of key: %s", key)
+		const tryCount = 3
+		if key == doneKey {
+			for index := range [tryCount]int{} {
+				if index == 0 {
+					done := make(chan struct{})
+					go func() {
+						time.AfterFunc(2*time.Second, func() {
+							done <- struct{}{}
+						})
+					}()
 
-		res, err := m.Get(key, done)
-		if err != nil {
-			log.Print(err)
+					calcFunc(key, done)
+				} else {
+					done := make(chan struct{})
+					calcFunc(key, done)
+				}
+			}
+
 		} else {
-			log.Printf("result: %v", res)
+			done := make(chan struct{})
+			calcFunc(key, done)
 		}
 	}
 }

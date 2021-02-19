@@ -1,5 +1,7 @@
 package memo
 
+import "fmt"
+
 type result struct {
 	value interface{}
 	err   error
@@ -54,10 +56,19 @@ func (memo *Memo) loop(f Func) {
 			e = &entry{ready: make(chan struct{})}
 			caches[key] = e
 			go e.call(f, key, req.done)
+		} else {
+			if e.res.err == ErrorDone {
+				// if done error result is cached, the result need to be calculated again
+				e.ready = make(chan struct{}) // ready must be a new one
+				go e.call(f, key, req.done)
+			}
 		}
 		go e.deliver(req.responses, req.done)
 	}
 }
+
+// ErrorDone error
+var ErrorDone error = fmt.Errorf("done")
 
 func (e *entry) call(f Func, key string, done <-chan struct{}) {
 	e.res.value, e.res.err = f(key, done)
@@ -67,7 +78,7 @@ func (e *entry) call(f Func, key string, done <-chan struct{}) {
 func (e *entry) deliver(responses chan<- result, done <-chan struct{}) {
 	select {
 	case <-done:
-		close(e.ready)
+		responses <- result{nil, ErrorDone}
 	case <-e.ready:
 		responses <- e.res
 	}
