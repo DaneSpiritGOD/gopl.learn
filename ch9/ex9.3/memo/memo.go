@@ -51,7 +51,7 @@ func (memo *Memo) loop(f Func) {
 		key := req.key
 		e, ok := caches[key]
 		if !ok {
-			e := &entry{ready: make(chan struct{})}
+			e = &entry{ready: make(chan struct{})}
 			caches[key] = e
 			go e.call(f, key, req.done)
 		}
