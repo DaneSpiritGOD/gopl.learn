@@ -11,16 +11,43 @@ import (
 	"os"
 )
 
+var filePathFrom = flag.String("pf", "", "path of file to convert")
+var filePathTo = flag.String("pt", "", "path of file to convert to")
 var flagFormatTo = flag.String("f", "jpeg", "image format to convert to")
 
 // go build main.go
-//
+// ./ex10.1.exe -pf cat.jpg -pt a.jpg -f png >> a.png
 func main() {
 	flag.Parse()
 
+	pathFrom := *filePathFrom
+	pathTo := *filePathTo
 	format := *flagFormatTo
-	if err := convert(os.Stdin, os.Stdout, format); err != nil {
-		fmt.Fprintf(os.Stderr, "jpeg: %v\n", err)
+
+	if len(pathFrom) == 0 {
+		fmt.Fprintln(os.Stderr, "error: file path must not be empty")
+		os.Exit(1)
+	}
+
+	if len(format) == 0 {
+		fmt.Fprintln(os.Stderr, "error: format must not be empty")
+		os.Exit(1)
+	}
+
+	fileFrom, err := os.Open(pathFrom)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: file from: %v\n", err)
+		os.Exit(1)
+	}
+
+	fileTo, err := os.Create(pathTo)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: file to: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := convert(fileFrom, fileTo, format); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
 }
