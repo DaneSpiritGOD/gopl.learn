@@ -16,7 +16,7 @@ var filePathTo = flag.String("pt", "", "path of file to convert to")
 var flagFormatTo = flag.String("f", "jpeg", "image format to convert to")
 
 // go build main.go
-// ./ex10.1.exe -pf cat.jpg -pt a.jpg -f png >> a.png
+// ./ex10.1.exe -pf cat.jpg -pt a.jpg -f png
 func main() {
 	flag.Parse()
 
