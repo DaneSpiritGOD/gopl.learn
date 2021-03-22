@@ -25,7 +25,12 @@ func main() {
 	format := *flagFormatTo
 
 	if len(pathFrom) == 0 {
-		fmt.Fprintln(os.Stderr, "error: file path must not be empty")
+		fmt.Fprintln(os.Stderr, "error: file from path must not be empty")
+		os.Exit(1)
+	}
+
+	if len(pathTo) == 0 {
+		fmt.Fprintln(os.Stderr, "error: file to path must not be empty")
 		os.Exit(1)
 	}
 
