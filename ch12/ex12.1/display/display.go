@@ -1,49 +1,58 @@
 package display
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"os"
 	"reflect"
 	"strconv"
 )
 
 func Display(name string, x interface{}) {
 	fmt.Printf("Display %s (%T):\n", name, x)
-	display(name, reflect.ValueOf(x))
+	display(name, reflect.ValueOf(x), os.Stdout)
 }
 
-func display(path string, v reflect.Value) {
+func display(path string, v reflect.Value, writer io.Writer) {
 	switch v.Kind() {
 	case reflect.Invalid:
 		fmt.Printf("%s = invalid\n", path)
 	case reflect.Slice, reflect.Array:
 		for i := 0; i < v.Len(); i++ {
-			display(fmt.Sprintf("%s[%d]", path, i), v.Index(i))
+			display(fmt.Sprintf("%s[%d]", path, i), v.Index(i), writer)
 		}
 	case reflect.Struct:
 		for i := 0; i < v.NumField(); i++ {
 			fieldPath := fmt.Sprintf("%s.%s", path, v.Type().Field(i).Name)
-			display(fieldPath, v.Field(i))
+			display(fieldPath, v.Field(i), writer)
 		}
 	case reflect.Map:
 		for _, key := range v.MapKeys() {
-			display(fmt.Sprintf("%s[%s]", path,
-				formatAtom(key)), v.MapIndex(key))
+			buf := new(bytes.Buffer)
+
+			fmt.Fprintf(buf, "%s[", path)
+			display("", key, buf)
+			fmt.Fprint(buf, "]")
+
+			fieldPath := buf.String()
+			display(fieldPath, v.MapIndex(key), writer)
 		}
 	case reflect.Ptr:
 		if v.IsNil() {
 			fmt.Printf("%s = nil\n", path)
 		} else {
-			display(fmt.Sprintf("(*%s)", path), v.Elem())
+			display(fmt.Sprintf("(*%s)", path), v.Elem(), writer)
 		}
 	case reflect.Interface:
 		if v.IsNil() {
-			fmt.Printf("%s = nil\n", path)
+			fmt.Fprintf(writer, "%s = nil\n", path)
 		} else {
-			fmt.Printf("%s.type = %s\n", path, v.Elem().Type())
-			display(path+".value", v.Elem())
+			fmt.Fprintf(writer, "%s.type = %s\n", path, v.Elem().Type())
+			display(path+".value", v.Elem(), writer)
 		}
 	default: // basic types, channels, funcs
-		fmt.Printf("%s = %s\n", path, formatAtom(v))
+		fmt.Fprintf(writer, "%s = %s\n", path, formatAtom(v))
 	}
 }
 

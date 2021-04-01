@@ -2,6 +2,11 @@ package main
 
 import "github.com/DaneSpiritGOD/ex12.1/display"
 
+type extraKey1 struct {
+	Number int
+	Author string
+}
+
 type movie struct {
 	Title, Subtitle string
 	Year            int
@@ -9,6 +14,9 @@ type movie struct {
 	Actor           map[string]string
 	Oscars          []string
 	Sequel          *string
+
+	Extra1 map[extraKey1]int
+	Extra2 map[[3]string]int
 }
 
 func main() {
@@ -31,6 +39,15 @@ func main() {
 			"Best Adapted Screenplay (Nomin.)",
 			"Best Director (Nomin.)",
 			"Best Picture (Nomin.)",
+		},
+
+		Extra1: map[extraKey1]int{
+			{1, "Dane"}: 9,
+			{2, "Fei"}:  9,
+		},
+		Extra2: map[[3]string]int{
+			{"1", "2", "3"}: 10,
+			{"4", "5", "6"}: 11,
 		},
 	}
 
