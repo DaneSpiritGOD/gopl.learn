@@ -19,6 +19,11 @@ type movie struct {
 	Extra2 map[[3]string]int
 }
 
+type cycle struct {
+	Value int
+	Tail  *cycle
+}
+
 func main() {
 	strangelove := movie{
 		Title:    "Dr. Strangelove",
@@ -52,4 +57,8 @@ func main() {
 	}
 
 	display.Display("movie", strangelove)
+
+	var c cycle
+	c = cycle{42, &c}
+	display.Display("c", c)
 }
