@@ -29,13 +29,20 @@ func display(path string, v reflect.Value, writer io.Writer) {
 		}
 	case reflect.Map:
 		for _, key := range v.MapKeys() {
-			buf := new(bytes.Buffer)
+			var fieldPath string
+			switch key.Kind() {
+			case reflect.Array, reflect.Struct:
+				buf := new(bytes.Buffer)
 
-			fmt.Fprintf(buf, "%s[", path)
-			display("", key, buf)
-			fmt.Fprint(buf, "]")
+				fmt.Fprintf(buf, "%s[\n", path)
+				display("$", key, buf)
+				fmt.Fprint(buf, "]")
 
-			fieldPath := buf.String()
+				fieldPath = buf.String()
+			default:
+				fieldPath = fmt.Sprintf("%s[%s]", path, formatAtom(key))
+			}
+
 			display(fieldPath, v.MapIndex(key), writer)
 		}
 	case reflect.Ptr:
