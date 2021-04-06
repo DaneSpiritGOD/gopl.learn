@@ -18,6 +18,7 @@ type movie struct {
 	Distance1       float32
 	Distance2       complex64
 	Foo             interface{}
+	Bar             interface{}
 }
 
 func main() {
@@ -46,6 +47,7 @@ func main() {
 		Distance1: 3.1415926,
 		Distance2: 3 + 1i,
 		Foo:       [3]int{8, 5, 6},
+		Bar:       map[int]string{1: "a", 2: "b"},
 	}
 
 	content, err := sexpr.Marshal(strangelove)

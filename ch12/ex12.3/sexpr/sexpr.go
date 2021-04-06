@@ -90,8 +90,9 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 	case reflect.Interface:
 		buf.WriteByte('(')
 
-		fmt.Fprintf(buf, "%q ", v.Type().String())
-		encode(buf, v.Elem())
+		elem := v.Elem()
+		fmt.Fprintf(buf, "%q ", elem.Type().String())
+		encode(buf, elem)
 
 		buf.WriteByte(')')
 
