@@ -11,6 +11,17 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 	case reflect.Invalid:
 		buf.WriteString("nil")
 
+	case reflect.Bool:
+		boolGetter := func() string {
+			if v.Bool() {
+				return "t"
+			} else {
+				return "nil"
+			}
+		}
+
+		fmt.Fprintf(buf, "%s", boolGetter())
+
 	case reflect.Int, reflect.Int8, reflect.Int16,
 		reflect.Int32, reflect.Int64:
 		fmt.Fprintf(buf, "%d", v.Int())
@@ -18,6 +29,13 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 	case reflect.Uint, reflect.Uint8, reflect.Uint16,
 		reflect.Uint32, reflect.Uint64, reflect.Uintptr:
 		fmt.Fprintf(buf, "%d", v.Uint())
+
+	case reflect.Float32, reflect.Float64:
+		fmt.Fprintf(buf, "%f", v.Float())
+
+	case reflect.Complex64, reflect.Complex128:
+		vc := v.Complex()
+		fmt.Fprintf(buf, "#C(%f %f)", real(vc), imag(vc))
 
 	case reflect.String:
 		fmt.Fprintf(buf, "%q", v.String())
@@ -67,6 +85,14 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 			}
 			buf.WriteByte(')')
 		}
+		buf.WriteByte(')')
+
+	case reflect.Interface:
+		buf.WriteByte('(')
+
+		fmt.Fprintf(buf, "%q ", v.Type().String())
+		encode(buf, v.Elem())
+
 		buf.WriteByte(')')
 
 	default: // float, complex, bool, chan, func, interface
