@@ -6,7 +6,7 @@ import (
 	"reflect"
 )
 
-func encode(buf *bytes.Buffer, v reflect.Value) error {
+func encode(buf *bytes.Buffer, v reflect.Value, prefixSpacesWhenNewLine int) error {
 	switch v.Kind() {
 	case reflect.Invalid:
 		buf.WriteString("nil")
@@ -41,28 +41,38 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 		fmt.Fprintf(buf, "%q", v.String())
 
 	case reflect.Ptr:
-		return encode(buf, v.Elem())
+		return encode(buf, v.Elem(), prefixSpacesWhenNewLine)
 
 	case reflect.Array, reflect.Slice: // (value ...)
 		buf.WriteByte('(')
+		prefixSpacesWhenNewLine2 := prefixSpacesWhenNewLine + 1
 		for i := 0; i < v.Len(); i++ {
 			if i > 0 {
-				buf.WriteByte(' ')
+				writePrefixSpaces(buf, prefixSpacesWhenNewLine2)
 			}
-			if err := encode(buf, v.Index(i)); err != nil {
+			if err := encode(buf, v.Index(i), prefixSpacesWhenNewLine2); err != nil {
 				return err
 			}
 		}
 		buf.WriteByte(')')
 
 	case reflect.Struct: // ((name value) ...)
+		var fieldName string
+		var prefixSpacesWhenNewLine2 int
+
 		buf.WriteByte('(')
 		for i := 0; i < v.NumField(); i++ {
+			fieldName = fmt.Sprintf("(%s ", v.Type().Field(i).Name)
+
 			if i > 0 {
-				buf.WriteByte(' ')
+				writePrefixSpaces(buf, prefixSpacesWhenNewLine+1)
+			} else {
+				prefixSpacesWhenNewLine2 = prefixSpacesWhenNewLine + len(fieldName)
 			}
-			fmt.Fprintf(buf, "(%s ", v.Type().Field(i).Name)
-			if err := encode(buf, v.Field(i)); err != nil {
+
+			buf.WriteString(fieldName)
+
+			if err := encode(buf, v.Field(i), prefixSpacesWhenNewLine2); err != nil {
 				return err
 			}
 			buf.WriteByte(')')
@@ -71,16 +81,17 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 
 	case reflect.Map: // ((key value) ...)
 		buf.WriteByte('(')
+		prefixSpacesWhenNewLine2 := prefixSpacesWhenNewLine + 1
 		for i, key := range v.MapKeys() {
 			if i > 0 {
-				buf.WriteByte(' ')
+				writePrefixSpaces(buf, prefixSpacesWhenNewLine2)
 			}
 			buf.WriteByte('(')
-			if err := encode(buf, key); err != nil {
+			if err := encode(buf, key, prefixSpacesWhenNewLine2); err != nil {
 				return err
 			}
 			buf.WriteByte(' ')
-			if err := encode(buf, v.MapIndex(key)); err != nil {
+			if err := encode(buf, v.MapIndex(key), prefixSpacesWhenNewLine2); err != nil {
 				return err
 			}
 			buf.WriteByte(')')
@@ -91,8 +102,10 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 		buf.WriteByte('(')
 
 		elem := v.Elem()
-		fmt.Fprintf(buf, "%q ", elem.Type().String())
-		encode(buf, elem)
+		typeString := fmt.Sprintf("%q ", elem.Type().String())
+
+		fmt.Fprint(buf, typeString)
+		encode(buf, elem, prefixSpacesWhenNewLine+len(typeString))
 
 		buf.WriteByte(')')
 
@@ -102,10 +115,17 @@ func encode(buf *bytes.Buffer, v reflect.Value) error {
 	return nil
 }
 
+func writePrefixSpaces(buf *bytes.Buffer, prefixSpacesWhenNewLine int) {
+	buf.WriteByte('\n')
+	for i := 0; i < prefixSpacesWhenNewLine; i++ {
+		buf.WriteByte(' ')
+	}
+}
+
 // Marshal encodes a Go value in S-expression form.
 func Marshal(v interface{}) ([]byte, error) {
 	var buf bytes.Buffer
-	if err := encode(&buf, reflect.ValueOf(v)); err != nil {
+	if err := encode(&buf, reflect.ValueOf(v), 0); err != nil {
 		return nil, err
 	}
 	return buf.Bytes(), nil
