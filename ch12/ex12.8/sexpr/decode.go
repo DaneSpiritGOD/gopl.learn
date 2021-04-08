@@ -3,6 +3,7 @@ package sexpr
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"reflect"
 	"strconv"
 	"text/scanner"
@@ -119,4 +120,20 @@ func Unmarshal(data []byte, out interface{}) (err error) {
 	}()
 	read(lex, reflect.ValueOf(out).Elem())
 	return nil
+}
+
+type Decoder struct {
+	r io.Reader
+	lexer
+}
+
+// NewDecoder returns a new decoder that reads from r.
+//
+// The decoder introduces its own buffering and may
+// read data from r beyond the JSON values requested.
+func NewDecoder(r io.Reader) *Decoder {
+	lex := &lexer{scan: scanner.Scanner{Mode: scanner.GoTokens}}
+	lex.scan.Init(r)
+
+	return &Decoder{r: r}
 }
