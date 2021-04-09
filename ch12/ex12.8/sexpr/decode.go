@@ -109,22 +109,12 @@ func endList(lex *lexer) bool {
 // Unmarshal parses S-expression data and populates the variable
 // whose address is in the non-nil pointer out.
 func Unmarshal(data []byte, out interface{}) (err error) {
-	lex := &lexer{scan: scanner.Scanner{Mode: scanner.GoTokens}}
-	lex.scan.Init(bytes.NewReader(data))
-	lex.next() // get the first token
-	defer func() {
-		// NOTE: this is not an example of ideal error handling.
-		if x := recover(); x != nil {
-			err = fmt.Errorf("error at %s: %v", lex.scan.Position, x)
-		}
-	}()
-	read(lex, reflect.ValueOf(out).Elem())
-	return nil
+	return NewDecoder(bytes.NewReader(data)).Decode(out)
 }
 
 type Decoder struct {
 	r io.Reader
-	lexer
+	*lexer
 }
 
 // NewDecoder returns a new decoder that reads from r.
@@ -135,5 +125,17 @@ func NewDecoder(r io.Reader) *Decoder {
 	lex := &lexer{scan: scanner.Scanner{Mode: scanner.GoTokens}}
 	lex.scan.Init(r)
 
-	return &Decoder{r: r}
+	return &Decoder{r: r, lexer: lex}
+}
+
+func (decoder *Decoder) Decode(v interface{}) (err error) {
+	decoder.next() // get the first token
+	defer func() {
+		// NOTE: this is not an example of ideal error handling.
+		if x := recover(); x != nil {
+			err = fmt.Errorf("error at %s: %v", decoder.scan.Position, x)
+		}
+	}()
+	read(decoder.lexer, reflect.ValueOf(v).Elem())
+	return nil
 }
